@@ -5,6 +5,7 @@ import passport from 'passport';
 import cors from 'cors';
 import multer from 'multer';
 import http from 'http';
+import { ORIGIN } from './config.js';
 import { sessionMiddleware } from './middlewares/session.js';
 import authRoute from './routes/auth.js';
 import homeRoute from './routes/home.js';
@@ -14,7 +15,7 @@ import './middlewares/passport.js';
 const app = express();
 const server = http.createServer(app);
 const corsMiddleware = cors({
-	origin: 'http://localhost:3000',
+	origin: ORIGIN,
 	methods: 'GET, POST, PUT, DELETE, HEAD, OPTIONS',
 	allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
 	credentials: true

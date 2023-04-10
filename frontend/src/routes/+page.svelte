@@ -3,6 +3,7 @@
 	import io from 'socket.io-client';
   import { afterUpdate, onMount } from 'svelte/internal';
 	import type { IMessage } from '$lib/global.js';
+	import { DIR } from '$lib/config.js';
 	import Form from '$lib/components/FormContainer.svelte';
 	import Message from '$lib/components/MessageContainer.svelte';
 	import Alert from '$lib/components/AlertBox.svelte';
@@ -18,7 +19,7 @@
 	let observer: IntersectionObserver;
 	let unobserve: Element;
 
-	const socket = io('http://localhost:4200', { withCredentials: true });
+	const socket = io(DIR, { withCredentials: true });
 
 	onMount(() => {
 		observer = new IntersectionObserver(loadMoreChats);

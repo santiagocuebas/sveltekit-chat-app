@@ -1,16 +1,10 @@
 import passport from 'passport';
-import { Server, Socket } from 'socket.io';
-import { ExtendedError } from 'socket.io/dist/namespace.js';
+import { Server } from 'socket.io';
 import { sessionMiddleware } from './middlewares/session.js';
 import { Chat } from './models/Chat.js';
+import { wrap } from './libs/libs.js';
 
 export const sockets = (io: Server) => {
-	const wrap = (middleware: any) => {
-		return (socket: Socket, next: (err?: ExtendedError | undefined) => void) => {
-			return middleware(socket.request, {}, next);
-		};
-	};
-	
 	io.use(wrap(sessionMiddleware));
 	io.use(wrap(passport.initialize()));
 	io.use(wrap(passport.session()));

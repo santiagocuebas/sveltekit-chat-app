@@ -1,5 +1,5 @@
 import { body, ValidationChain } from 'express-validator';
-import { isValidPassword } from './customsValidators.js';
+import { isValidPassword } from './customs-validators.js';
 
 export const arrayRegister: ValidationChain[] = [
 	body('username', 'Invalid username')

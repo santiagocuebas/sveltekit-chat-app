@@ -1,13 +1,13 @@
 import { Server } from 'socket.io';
 import mongoose from 'mongoose';
 import server from './app.js';
-import { PORT, MONGO_URI } from './config.js';
+import { PORT, MONGO_URI, ORIGIN } from './config.js';
 import { sockets } from './sockets.js';
 
 // Create Server
 const io = new Server(server, {
 	cors: {
-		origin: 'http://localhost:3000',
+		origin: ORIGIN,
 		credentials: true
 	}
 });

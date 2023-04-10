@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import passport from 'passport';
 import { IUser } from '../global.js';
-import { arrayRegister } from '../libs/arrayValidators.js';
+import { arrayRegister } from '../libs/array-validators.js';
 import { isLoggedIn, isNotLoggedIn } from '../middlewares/logged.js';
 import { validate } from '../middlewares/validator.js';
 
