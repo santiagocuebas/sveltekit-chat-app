@@ -5,8 +5,7 @@ import { isLoggedIn, isNotLoggedIn } from '../middlewares/logged.js';
 import { validate } from '../middlewares/validator.js';
 const router = Router();
 router.post('/register', isNotLoggedIn, validate(arrayRegister), passport.authenticate('register'), (req, res) => {
-    const user = req.user;
-    return res.json({ url: user.username });
+    return res.json({ url: req.user.username });
 });
 router.post('/logout', isLoggedIn, (req, res, next) => {
     return req.logout(err => {

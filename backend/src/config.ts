@@ -5,4 +5,6 @@ export const PORT = process.env.PORT;
 
 export const MONGO_URI = process.env.MONGO_URI as string;
 
+export const SECRET = process.env.SECRET as string;
+
 export const ORIGIN = process.env.ORIGIN;

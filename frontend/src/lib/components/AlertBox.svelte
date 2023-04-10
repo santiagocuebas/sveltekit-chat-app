@@ -7,26 +7,22 @@
   export let tempId: string;
   export let messages: IMessage[];
 
-  function closeAlert() {
-    alert = false;
-  }
-
   function deleteMessage() {
     socket.emit('delete', tempId);
     
     messages = messages.filter(message => message._id !== tempId);
 
-    closeAlert();
+    alert = false;;
   }
 </script>
 
 <div class="absolute">
   <div class="alert-container">
-    <p>Want delete this message?</p>
+    <h3>Want delete this message?</h3>
     <button on:click={deleteMessage}>
       Accept
     </button>
-    <button class="alert-cancel" on:click={closeAlert}>
+    <button class="alert-cancel" on:click={() => alert = false}>
       Cancel
     </button>
   </div>
@@ -35,11 +31,14 @@
 <style>
   .absolute {
     display: grid;
-    position: fixed;
+    position: absolute;
     justify-content: center;
     align-items: flex-start;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+		border-radius: 16px;
     background-color: #000000bb;
     z-index: 100;
   }
@@ -49,14 +48,14 @@
     flex-wrap: wrap;
     justify-content: center;
     width: 500px;
-    margin-top: 100px;
+    margin-top: 200px;
     padding: 20px;
     border-radius: 12px;
     background-color: #ffffff;
     gap: 10px;
   }
 
-  p {
+  h3 {
     width: 100%;
     text-align: center;
     font-size: 32px;
@@ -68,6 +67,7 @@
     padding: 8px 20px;
     border: none;
     background-color: #2797e2;
+    box-shadow: 0 0 2px #000000;
     font-weight: 700;
     color: #ffffff;
     cursor: pointer;

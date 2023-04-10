@@ -12,6 +12,6 @@ export const validate = (validations: ValidationChain[]) => {
 
 		const errors = getErrorMessages(errs.array());
 
-		res.status(400).json({ errors });
+		return res.json({ errors });
 	};
 };

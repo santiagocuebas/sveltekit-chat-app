@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { DataItem } from '../global.js';
   
-	export let hide: (value: boolean) => void;
+	export let hide: boolean;
 	export let errors: DataItem;
 </script>
 
@@ -16,7 +16,7 @@
 			{/each}
 		</ul>
 	</div>
-	<button class="error-delete" on:click={() => hide(false)}>
+	<button class="error-delete" on:click|preventDefault={() => hide = false}>
 		<i class="error-icon fa-solid fa-xmark"></i>
 	</button>
 </div>

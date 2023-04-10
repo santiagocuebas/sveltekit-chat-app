@@ -6,24 +6,22 @@ import { User } from '../models/User.js';
 
 passport.use(
 	'register',
-	new LocalStrategy(
-		{
-			usernameField: 'username',
-			passwordField: 'password'
-		},
-		async (username, password, done) => {
-			let user = await User.findOne({ username });
+	new LocalStrategy({
+		usernameField: 'username',
+		passwordField: 'password'
+	},
+	async (username, password, done) => {
+		let user = await User.findOne({ username });
 
-			if (user === null) {
-				user = await User.create({
-					username,
-					password: await encryptPassword(password)
-				});
-			}
-
-			return done(null, user);
+		if (user === null) {
+			user = await User.create({
+				username,
+				password: await encryptPassword(password)
+			});
 		}
-	)
+
+		return done(null, user);
+	})
 );
 
 passport.serializeUser(async (user: IUser, done) => {

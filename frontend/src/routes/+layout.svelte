@@ -14,10 +14,11 @@
 
 	.main-container {
 		display: grid;
+		position: fixed;
 		justify-content: center;
 		align-content: flex-start;
-		width: 100vw;
-		min-height: 100vh;
+		width: 100%;
+		min-height: 100%;
 		background-color: #edf8fa;
 	}
 </style>

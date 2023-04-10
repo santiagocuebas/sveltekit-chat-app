@@ -7,6 +7,6 @@ export const validate = (validations) => {
         if (errs.isEmpty())
             return next();
         const errors = getErrorMessages(errs.array());
-        res.status(400).json({ errors });
+        return res.json({ errors });
     };
 };

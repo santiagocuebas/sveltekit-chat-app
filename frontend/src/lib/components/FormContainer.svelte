@@ -1,5 +1,7 @@
 <script lang="ts">
+	import axios from 'axios';
   import { goto } from '$app/navigation';
+  import { DIR } from '$lib/config';
   import type { Socket } from 'socket.io-client';
 
   export let socket: Socket;
@@ -13,11 +15,11 @@
 	}
 
 	async function handleLogout() {
-		const data = await fetch('http://localhost:4200/api/auth/logout', {
+		const data = await axios({
 			method: 'POST',
-			credentials: 'include',
-			body: null
-		}).then(res => res.json());
+			url: DIR + '/api/auth/logout',
+			withCredentials: true
+		}).then(res => res.data);
 
 		if (data.error) {
 			console.log(data.error);
@@ -31,7 +33,7 @@
   <form action="" on:submit|preventDefault={handleSubmit}>
     <input type="text" placeholder="Message" bind:value={message}>
   </form>
-  <button title="logout" on:click={handleLogout}>
+  <button title="logout" on:click|preventDefault={handleLogout}>
     <i class="fa-solid fa-right-from-bracket"></i>
   </button>
 </div>
@@ -42,6 +44,7 @@
 		align-self: flex-end;
 		width: 100%;
 		height: min-content;
+		margin: 5px;
 		gap: 12px;
 	}
 

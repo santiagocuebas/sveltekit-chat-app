@@ -70,7 +70,7 @@
 	});
 
 	afterUpdate(() => {
-		const loadedMessages = document.querySelectorAll('.message-content');
+		const loadedMessages = document.querySelectorAll('.messages');
 
 		if (loadedMessages.length > 0) {
 			observer.observe(loadedMessages[0]);
@@ -84,18 +84,17 @@
 	});
 </script>
 
-{#if alert}
-	<Alert
-		socket={socket}
-		bind:alert={alert} 
-		bind:tempId={tempId}
-		bind:messages={messages}
-	/>
-{/if}
-
 <h1>Sample Svelte Chat</h1>
 
 <div>
+	{#if alert}
+		<Alert
+			socket={socket}
+			bind:alert={alert} 
+			bind:tempId={tempId}
+			bind:messages={visibleMessages}
+		/>
+	{/if}
 	<Message
 		username={data.username}
 		bind:messages={visibleMessages}
@@ -115,13 +114,15 @@
 	
 	div {
 		display: flex;
+		position: relative;
 		flex-wrap: wrap;
-		width: 500px;
+		width: 600px;
+		max-width: 600px;
 		min-height: 660px;
-		padding: 20px;
+		padding: 15px;
 		border-radius: 16px;
-		background-image: url('smiley.jpg');
+		background-image: url('/smiley.jpg');
 		box-shadow: 0 2px 10px #555555;
-		gap: 20px;
+		row-gap: 10px;
 	}
 </style>

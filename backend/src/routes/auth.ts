@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import passport from 'passport';
-import { IUser } from '../global.js';
 import { arrayRegister } from '../libs/array-validators.js';
 import { isLoggedIn, isNotLoggedIn } from '../middlewares/logged.js';
 import { validate } from '../middlewares/validator.js';
@@ -13,8 +12,7 @@ router.post(
 	validate(arrayRegister),
 	passport.authenticate('register'),
 	(req, res) => {
-		const user = req.user as IUser;
-		return res.json({ url: user.username });
+		return res.json({ url: req.user.username });
 	}
 );
 

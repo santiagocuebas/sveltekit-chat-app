@@ -1,18 +1,17 @@
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
-import { MONGO_URI } from '../config.js';
+import { MONGO_URI, SECRET } from '../config.js';
 export const sessionMiddleware = session({
-    secret: 'secret',
+    secret: SECRET,
     resave: false,
     saveUninitialized: false,
     store: new MongoStore({
         mongoUrl: MONGO_URI,
-        ttl: 60 * 60 * 24 * 14,
-        touchAfter: 24 * 60 * 60
+        ttl: 60 * 60 * 24 * 14
     }),
     cookie: {
         httpOnly: true,
         sameSite: 'lax',
-        secure: false
+        secure: process.env.NODE_ENV === 'production'
     }
 });

@@ -29,47 +29,47 @@
 
 <div class="message-container" bind:this={div}>
 	{#if messages.length > 0}
-	{#each messages as message (message._id)}
-	<div
-		class={`message-content ${message.from === username ? 'message-me' : ''}`}
-		on:dblclick={() => deleteMessage(message.from, message._id)}
-	>
-		<h3>{message.from}</h3>
-		<p class="message-text">{message.body}</p>
-		<p class="message-createdAt">{format(message.createdAt)}</p>
-	</div>
-	{/each}
+		{#each messages as message (message._id)}
+		<div
+			class='messages {message.from === username ? 'message-me' : ''}'
+			on:dblclick={() => deleteMessage(message.from, message._id)}
+		>
+			<h3>{message.from}</h3>
+			<p class="message-text">{message.body}</p>
+			<p class="message-createdAt">{format(message.createdAt)}</p>
+		</div>
+		{/each}
 	{/if}
 </div>
 
 <style>
 	.message-container {
-		display: flex;
-		flex-wrap: wrap;
+		display: grid;
+		grid-auto-rows: min-content;
 		width: 100%;
-		max-height: 600px;
+		max-height: 700px;
+		padding: 5px;
 		overflow-y: auto;
-		overflow-x: hidden;
-		overscroll-behavior-y: contain;
 		scrollbar-width: none;
-		gap: 8px;
+		gap: 9px;
 	}
 
-	.message-content {
-		display: flex;
+	.message-container div {
+		display: grid;
 		position: relative;
-		flex-wrap: wrap;
+		grid-auto-rows: min-content;
 		width: 60%;
-		padding: 10px;
+		padding: 8px;
 		border-radius: 8px;
 		background-color: #ffffff;
+		box-shadow: 0 0 1px #000000;
 		user-select: none;
-		gap: 4px;
+		row-gap: 3px;
 		z-index: 50;
 	}
 
-	.message-me {
-		margin-left: auto;
+	.message-container .message-me {
+		justify-self: flex-end;
 		background-color: #caeef1;
 		cursor: pointer;
 	}
@@ -81,11 +81,12 @@
 
 	.message-text {
 		width: 100%;
+		overflow-x: hidden;
 		overflow-wrap: break-word;
 	}
 
 	.message-createdAt {
-		margin-left: auto;
+		justify-self: flex-end;
 		font-size: 14px;
 		color: #555555;
 	}

@@ -1,27 +1,28 @@
 <script lang="ts">
-  import { goto } from "$app/navigation";
+	import axios from 'axios';
+  import { goto } from '$app/navigation';
 	import type { ResponseData, DataItem } from '$lib/global.js';
+  import { DIR } from '$lib/config.js';
 	import Error from '$lib/components/ErrorBox.svelte';
 
 	let errors: DataItem = {};
 	let visible = false;
 
-	const changeError = (value: boolean) => visible = value;
-
 	const setErrors = (data: DataItem) => errors = data;
 
 	async function handleSubmit(this: HTMLFormElement) {
-		const data: ResponseData = await fetch(this.action, {
+		const data: ResponseData = await axios({
 			method: this.method,
-			credentials: 'include',
-			body: new FormData(this)
-		}).then(res => res.json());
+			url: this.action,
+			withCredentials: true,
+			data: this
+		}).then(res => res.data);
 
 		if (data.error) {
 			console.log(data.error);
 		} else if (data.errors) {
-			changeError(true);
 			setErrors(data.errors as DataItem);
+			visible = true;
 		} else if (typeof data.url === 'string') {
 			goto('/');
 		}
@@ -31,12 +32,12 @@
 <div>
 	<h1>Register</h1>
 	<form
-		action="http://localhost:4200/api/auth/register"
+		action="{DIR}/api/auth/register"
 		method="POST"
 		on:submit|preventDefault={handleSubmit}
 	>
 		{#if visible}
-			<Error hide={changeError} errors={errors} />
+			<Error bind:hide={visible} errors={errors} />
 		{/if}
 		<input type="text" name="username" placeholder="Username" spellcheck="false">
 		<input type="password" name="password" placeholder="Password">
