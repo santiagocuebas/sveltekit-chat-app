@@ -14,6 +14,7 @@ is a simple chat that was built with entire javascript technologies, for the fro
 # Installations
 ```
 git clone https://github.com/santiagocuebas/sveltekit-chat-app
+cd sveltekit-chat-app
 cd backend
 npm start
 cd frontend
