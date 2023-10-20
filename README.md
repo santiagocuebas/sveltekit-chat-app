@@ -11,9 +11,9 @@ is a simple chat that was built with entire javascript technologies, for the fro
 * `SECRET`, secret express-session key.
 * `ORIGIN`, the http client port.
 
-# Installation
+# Installations
 ```
-git clone https://github.com/santiagocuebas/sveltekit-advanced-chat-app
+git clone https://github.com/santiagocuebas/sveltekit-chat-app
 cd backend
 npm start
 cd frontend
