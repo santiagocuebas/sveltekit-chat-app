@@ -8,7 +8,7 @@ is a simple chat that was built with entire javascript technologies, for the fro
 ### Server
 * `PORT`, the http server port, default is `4200`.
 * `MONGO_URI`, the MongoDB database uri. 
-* `SECRET`, secret JWT key.
+* `SECRET`, secret express-session key.
 * `ORIGIN`, the http client port.
 
 # Installation
