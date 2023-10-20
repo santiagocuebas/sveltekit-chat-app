@@ -1,7 +1,7 @@
 # Chat with TypeScript, Node.js and SvelteKit
 is a simple chat that was built with entire javascript technologies, for the frontend, backend and database.
 
-# Enviroment Variables
+## Enviroment Variables
 ### Client
 * `PORT`, the http client port, default is `3000`.
 * `PUBLIC_DIR`, the http server port.
@@ -11,17 +11,19 @@ is a simple chat that was built with entire javascript technologies, for the fro
 * `SECRET`, secret express-session key.
 * `ORIGIN`, the http client port.
 
-# Installations
+## Installations
 ```
 git clone https://github.com/santiagocuebas/sveltekit-chat-app
 cd sveltekit-chat-app
 cd backend
+pnpm install
 npm start
 cd frontend
+pnpm install
 npm start
 ```
 
-# Tools
+## Tools
 - Node.js
 - Express
 - Socket.io
